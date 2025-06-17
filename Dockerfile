@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install -y wget cmake g++ gcc git libeigen3-dev li
 # Install miniforge
 RUN wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O Miniforge3.sh && \
     bash Miniforge3.sh -b -p /opt/miniforge3 && \
-    rm Miniforge3.sh
+    rm Miniforge3.sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV PATH="/opt/miniforge3/bin:${PATH}"
 ENV PATH=/usr/local/cuda-12.2/bin:$PATH
