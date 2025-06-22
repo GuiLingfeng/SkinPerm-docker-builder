@@ -20,7 +20,7 @@ CMD [ "/bin/bash" ]
 RUN conda init bash && \
     echo "conda activate base" >> ~/.bashrc && \
     conda update -n base --all -y && \ 
-    conda install -n base cmake=3.28 python=3.8.19 signac=1.7.0 signac-flow=0.21.0 py3Dmol nglview openbabel=3.1.1 mbuild=0.10.5 foyer=0.7.6 signac jupyter mdanalysis=2.4.3 mdtraj=1.9.7 numpy=1.24.4 pandas=1.4.4 scikit-learn=1.3.2 scipy=1.10.1 -y && \
+    conda install -n base -c conda-forge cmake=3.28 python=3.8.19 signac=1.7.0 signac-flow=0.21.0 py3Dmol nglview openbabel=3.1.1 mbuild=0.10.5 foyer=0.7.6 signac jupyter mdanalysis=2.4.3 mdtraj=1.9.7 numpy=1.24.4 pandas=1.4.4 scikit-learn=1.3.2 scipy=1.10.1 -y && \
 	echo "export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib:\$LD_LIBRARY_PATH" >> ~/.bashrc && \
 	echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc && \
 	git clone https://github.com/gromacs/gromacs.git && \
