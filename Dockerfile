@@ -27,11 +27,15 @@ RUN /opt/miniforge3/bin/conda install -n base -c conda-forge -c omnia \
     /opt/miniforge3/bin/pip install foyer==0.7.6 pyyaml panedr==0.7.2
 
 # Build GROMACS 2023.2
-RUN git clone https://github.com/gromacs/gromacs.git && \
-    cd gromacs && \
-    git checkout v2023.2 && \
-    # sed -i 's/^#define STRLEN 4096/#define STRLEN 131072/' src/gromacs/utility/include/gromacs/utility/cstringutil.h && \
-    mkdir build && cd build && \
+RUN git clone --branch v2023.2 --depth 1 https://github.com/gromacs/gromacs.git \
+ && cd gromacs                                                        \
+ && git config user.email "builder@container"                         \
+ && git config user.name  "Container Builder"                         \
+ && sed -i 's/^#define STRLEN 4096/#define STRLEN 131072/' \
+       src/gromacs/utility/include/gromacs/utility/cstringutil.h      \
+ && git add -u                                                        \
+ && git commit -m "Increase STRLEN to 131072 for long command lines"  \
+ && mkdir build && cd build && \
     cmake .. \
       -DGMX_BUILD_OWN_FFTW=ON \
       -DGMX_GPU=CUDA \
