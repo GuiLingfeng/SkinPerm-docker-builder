@@ -30,17 +30,15 @@ RUN /opt/miniforge3/bin/conda install -n base -c conda-forge -c omnia \
 RUN git clone https://github.com/gromacs/gromacs.git && \
     cd gromacs && \
     git checkout v2023.2 && \
-    git reset --hard HEAD && \
-    git clean -fdx && \
-    sed -i 's/^#define STRLEN 4096/#define STRLEN 131072/' src/gromacs/utility/include/gromacs/utility/cstringutil.h && \
+    # sed -i 's/^#define STRLEN 4096/#define STRLEN 131072/' src/gromacs/utility/include/gromacs/utility/cstringutil.h && \
     mkdir build && cd build && \
     cmake .. \
       -DGMX_BUILD_OWN_FFTW=ON \
       -DGMX_GPU=CUDA \
-      -DCUDA_ARCHITECTURES="80;90" \
       -DGMX_DOUBLE=OFF \
       -DGMX_MPI=OFF \
       -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+      -DGMX_CUDA_TARGET_SM="80;90"
       -DCMAKE_BUILD_TYPE=Release && \
     make -j$(nproc) && \
     make install
