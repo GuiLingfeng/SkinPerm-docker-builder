@@ -33,10 +33,11 @@ RUN conda init bash && \
 	cmake .. \ 
 		  -DGMX_BUILD_OWN_FFTW=ON \
 		  -DGMX_GPU=CUDA \
+          -DCUDA_ARCHITECTURES="80;90" \
 		  -DGMX_DOUBLE=OFF \
 		  -DGMX_MPI=OFF \
 		  -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
-		  -DGMX_CUDA_TARGET_SM="60;70;75;80" \
+		 # -DGMX_CUDA_TARGET_SM="60;70;75;80" \
 		  -DCMAKE_BUILD_TYPE=Release && \
 	make && \
 	make install 
