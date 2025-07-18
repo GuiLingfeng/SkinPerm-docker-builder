@@ -30,6 +30,8 @@ RUN /opt/miniforge3/bin/conda install -n base -c conda-forge -c omnia \
 RUN git clone https://github.com/gromacs/gromacs.git && \
     cd gromacs && \
     git checkout v2023.2 && \
+    git reset --hard HEAD && \
+    git clean -fdx && \
     sed -i 's/^#define STRLEN 4096/#define STRLEN 131072/' src/gromacs/utility/include/gromacs/utility/cstringutil.h && \
     mkdir build && cd build && \
     cmake .. \
