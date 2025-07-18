@@ -38,7 +38,7 @@ RUN git clone https://github.com/gromacs/gromacs.git && \
       -DGMX_DOUBLE=OFF \
       -DGMX_MPI=OFF \
       -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
-      -DGMX_CUDA_TARGET_SM="80;90"
+      -DGMX_CUDA_TARGET_SM="80;90" \
       -DCMAKE_BUILD_TYPE=Release && \
     make -j$(nproc) && \
     make install
