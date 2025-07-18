@@ -27,7 +27,7 @@ RUN /opt/miniforge3/bin/conda install -n base -c conda-forge -c omnia \
     /opt/miniforge3/bin/pip install foyer==0.7.6 pyyaml panedr==0.7.2
 
 # Build GROMACS 2023.2
-RUN git clone --branch v2023.2 --depth 1 https://github.com/gromacs/gromacs.git \
+RUN git clone --branch v2025.2 --depth 1 https://github.com/gromacs/gromacs.git \
  && cd gromacs                                                        \
  && git config user.email "builder@container"                         \
  && git config user.name  "Container Builder"                         \
