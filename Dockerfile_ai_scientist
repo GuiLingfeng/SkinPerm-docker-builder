@@ -32,6 +32,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.2
 
 # Install Python packages
 RUN pip install --no-cache-dir \
+    google-generativeai==0.8.5 \
     anthropic==0.34.0 \
     aider-chat==0.50.1 \
     backoff==2.2.1 \
