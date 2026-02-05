@@ -28,6 +28,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: ./Dockerfile_ai_scientist
           platforms: linux/amd64
           push: true
-          tags: griffingui/gromacs-ml:latest
+          tags: |
+            griffingui/ai-scientist:latest
+            griffingui/ai-scientist:${{ github.sha }}
